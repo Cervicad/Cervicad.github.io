@@ -6,6 +6,8 @@ interface Project {
   description: string
   tags: string[]
   accent: Accent
+  /** Lien interne vers une page détaillée (ex : '#/prd') */
+  link?: string
 }
 
 const PROJECTS: Project[] = [
@@ -24,6 +26,7 @@ const PROJECTS: Project[] = [
       'Automatisation documentaire avec workflow n8n sur Docker, utilisant un agent IA (Mistral) pour le traitement PDF/Excel et la génération de rapports.',
     tags: ['n8n', 'Docker', 'Mistral AI', 'OCR'],
     accent: 'cyan',
+    link: '#/prd',
   },
   {
     title: 'Centreon',
@@ -87,12 +90,10 @@ export default function Projects() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((project, index) => {
           const accent = ACCENT_STYLES[project.accent]
+          const cardClasses = `group flex flex-col rounded-lg border border-line bg-surface/60 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 ${accent.hoverBorder} ${accent.hoverShadow}`
 
-          return (
-            <article
-              key={project.title}
-              className={`group flex flex-col rounded-lg border border-line bg-surface/60 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 ${accent.hoverBorder} ${accent.hoverShadow}`}
-            >
+          const cardContent = (
+            <>
               <div className="mb-5 flex items-start justify-between">
                 <span
                   className={`grid h-10 w-10 place-items-center rounded-md border border-line bg-base ${accent.icon} transition-transform duration-300 group-hover:-translate-y-0.5`}
@@ -115,6 +116,12 @@ export default function Projects() {
                 {project.description}
               </p>
 
+              {project.link && (
+                <p className="mt-4 font-mono text-xs font-semibold text-violet-500 transition-colors duration-200 group-hover:text-neon-cyan">
+                  <span aria-hidden="true">→</span> voir la case study
+                </p>
+              )}
+
               <ul className="mt-auto flex flex-wrap gap-2 pt-6">
                 {project.tags.map((tag) => (
                   <li
@@ -125,6 +132,16 @@ export default function Projects() {
                   </li>
                 ))}
               </ul>
+            </>
+          )
+
+          return project.link ? (
+            <a key={project.title} href={project.link} className={cardClasses}>
+              {cardContent}
+            </a>
+          ) : (
+            <article key={project.title} className={cardClasses}>
+              {cardContent}
             </article>
           )
         })}

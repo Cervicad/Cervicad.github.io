@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react'
 import Education from './components/Education'
 import Experience from './components/Experience'
 import Header from './components/Header'
+import ProjectPRD from './components/ProjectPRD'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 
@@ -81,7 +83,7 @@ function Hero() {
   )
 }
 
-function Footer() {
+export function Footer() {
   return (
     <footer className="border-t border-line/60">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-6 py-8 font-mono text-xs text-muted sm:flex-row">
@@ -101,7 +103,29 @@ function Footer() {
   )
 }
 
+/**
+ * Routage minimal par hash : '#/prd' affiche la case study,
+ * toute autre valeur (ancres de section comme '#projets') affiche le portfolio.
+ */
+function useHashRoute(): string {
+  const [hash, setHash] = useState(() => window.location.hash)
+
+  useEffect(() => {
+    const onHashChange = () => setHash(window.location.hash)
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
+  return hash
+}
+
 function App() {
+  const hash = useHashRoute()
+
+  if (hash.startsWith('#/prd')) {
+    return <ProjectPRD />
+  }
+
   return (
     <div id="top" className="min-h-screen bg-base font-sans text-fg">
       <Header />

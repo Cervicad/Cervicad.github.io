@@ -33,7 +33,7 @@ const DEGREES: Degree[] = [
     title: 'Baccalauréat Scientifique SVT',
     school: 'Lycée Saint-Joseph - Bossuet',
     location: 'Lannion',
-    period: '2017 — 2020',
+    period: '2020',
   },
 ]
 

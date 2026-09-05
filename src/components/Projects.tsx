@@ -36,6 +36,15 @@ const PROJECTS: Project[] = [
     tags: ['Docker', 'Kubernetes', 'Rainmeter'],
     accent: 'green',
   },
+  {
+    title: 'PAM',
+    category: 'IA · Smart Farming',
+    description:
+      'Analyse multimodale du comportement de vaches laitières (dataset MMCOWS) : classification de 7 comportements par LSTM/CNN-LSTM et détection de profils atypiques.',
+    tags: ['LSTM', 'CNN-LSTM', 'Random Forest', 'Feature Engineering'],
+    accent: 'cyan',
+    link: '#/pam',
+  },
 ]
 
 // Classes statiques par accent (requis par Tailwind pour ne pas rater les classes au build)

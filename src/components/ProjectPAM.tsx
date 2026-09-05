@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Footer } from '../App'
-import posterImg from '../assets/prd/poster.png'
-import workflowImg from '../assets/prd/slide_5.png'
-import agentImg from '../assets/prd/slide_6.png'
+import budgetImg from '../assets/pam/budget.png'
+import heatmapImg from '../assets/pam/heatmap.png'
+import resultsImg from '../assets/pam/results.png'
 import {
   BackToPortfolio,
   CaseStudyHeader,
@@ -15,41 +15,38 @@ import {
 // ---------------------------------------------------------------------------
 
 const HERO_TAGS = [
-  'IA Agents',
-  'Automatisation',
-  'n8n',
-  'Docker',
-  'OCR',
-  'Parsing',
-  'HTML Generation',
+  'Machine Learning',
+  'CNN-LSTM',
+  'Random Forest',
+  'Feature Engineering',
+  'Time Series',
+  'Smart Farming',
 ]
 
 const META = [
-  { label: 'contexte', value: 'ECAM Louis de Broglie · Forum PRD mars 2026' },
-  { label: 'équipe', value: 'Kevin Tallagrand & Antoine Jamet' },
-  { label: 'délai', value: '6 semaines · prototype validé sur documents réels' },
+  { label: 'contexte', value: 'ECAM Louis de Broglie · janv. — mars 2026' },
+  { label: 'équipe', value: 'K. Tallagrand, A. Jamet, B. Girard, B. Ithorotz' },
+  { label: 'dataset', value: 'MMCOWS · 16 vaches Holstein · Université du Wisconsin' },
 ]
 
 const SOLUTION_STEPS = [
   {
     number: '01',
-    title: 'Extraction Hétérogène',
+    title: 'Exploration & Corrélations',
     description:
-      "Parsing de documents financiers non standardisés (DIC, Term Sheets) via OCR : conversion de PDF conçus pour une lecture humaine en texte exploitable par des agents.",
+      'Étude exploratoire complète : matrices de corrélation (Pearson), ANOVA et eta², et heatmaps spatiales révélant les « hotspots » comportementaux de l’étable.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <line x1="16" y1="13" x2="8" y2="13" />
-        <line x1="16" y1="17" x2="8" y2="17" />
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
       </svg>
     ),
   },
   {
     number: '02',
-    title: 'Orchestration d’Agents IA',
+    title: 'Feature Engineering',
     description:
-      'Coordination d’agents IA spécialisés — un agent par bloc du rapport — pour une extraction structurée et progressive. Garde-fous de cohérence et itérations limitées pour fiabiliser chaque section.',
+      'Quatre itérations de datasets : synchronisation multi-capteurs à 1 Hz, distances aux zones d’intérêt, fenêtres glissantes de 10 s (vitesse lissée, Motion Score). Split par vaches pour garantir la généralisation.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="4" y="4" width="16" height="16" rx="2" />
@@ -67,9 +64,9 @@ const SOLUTION_STEPS = [
   },
   {
     number: '03',
-    title: 'Génération Dynamique',
+    title: 'Modélisation Comparative',
     description:
-      'Organisation des données extraites en variables structurées, puis injection dynamique dans un template HTML (placeholders) pour produire le rapport réglementaire « Phoenix ».',
+      'De la baseline Random Forest à l’hybride CNN-LSTM : le module CNN extrait le « rythme » des signaux d’accélération, le LSTM assure la cohérence temporelle. Sept comportements classifiés.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polyline points="16 18 22 12 16 6" />
@@ -81,30 +78,37 @@ const SOLUTION_STEPS = [
 
 const RESULTS = [
   {
-    headline: 'Faisabilité Prouvée',
+    headline: 'Macro F1 : 0.74',
     description:
-      'Extraction fiable pour les documents bien structurés, opérationnelle sur plusieurs émetteurs et formats — démontrant la robustesse de l’approche multi-agents.',
+      'Meilleur score global atteint par le CNN-LSTM sur le dataset le plus enrichi (descripteurs spatiaux + temporels), avec un compromis précision/rappel maîtrisé pour la surveillance réelle.',
   },
   {
-    headline: '3 à 4 min',
+    headline: 'Rappel marche : 0.15 → 0.71',
     description:
-      'Temps de génération complet d’un rapport, contre plusieurs heures de traitement manuel — réduction drastique du temps de production.',
+      'Progression du rappel sur la marche entre la baseline Random Forest et le CNN-LSTM (fenêtres de 10 s) ; rappel de 0.93 sur l’abreuvement pour une détection quasi exhaustive des événements critiques.',
   },
+]
+
+const BEHAVIOR_STATS = [
+  { label: 'Rest', value: '≈ 42 %' },
+  { label: 'Activity', value: '≈ 23 %' },
+  { label: 'Feeding', value: '≈ 15 %' },
+  { label: 'Unknown', value: '≈ 18 %' },
 ]
 
 const ROADMAP = [
-  'Extraction plus fine des informations (tableaux complexes, mises en page hétérogènes).',
-  'Ajout de contrôles qualité explicites sur les données extraites.',
-  'Amélioration du rendu final des rapports générés.',
-  'Industrialisation via une architecture dédiée : scalabilité et intégration de nouvelles sources de données.',
+  'Analyse multi-jours pour consolider la détection d’atypismes.',
+  'Croisement avec des données physiologiques (température fine, suivis vétérinaires) pour valider les hypothèses.',
+  'Exploitation de la modalité caméra (visual_data), restée hors périmètre.',
+  'Vers un outil de surveillance comportementale du troupeau en temps réel.',
 ]
 
 // ---------------------------------------------------------------------------
-// Page : Case Study PRD
+// Page : Case Study PAM
 // ---------------------------------------------------------------------------
 
-export default function ProjectPRD() {
-  // La page s'ouvre toujours en haut (accès direct via #/prd ou retour nav)
+export default function ProjectPAM() {
+  // La page s'ouvre toujours en haut (accès direct via #/pam ou retour nav)
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -112,7 +116,7 @@ export default function ProjectPRD() {
   return (
     <div className="min-h-screen bg-base font-sans text-fg">
       {/* Barre supérieure : retour portfolio */}
-      <CaseStudyHeader path="prd" />
+      <CaseStudyHeader path="pam" />
 
       <main className="mx-auto max-w-5xl px-6">
         {/* ---------------------------------------------------------------- */}
@@ -129,21 +133,24 @@ export default function ProjectPRD() {
           />
 
           <p className="font-mono text-sm text-muted">
-            <span className="text-violet-500">~/prd</span>
+            <span className="text-violet-500">~/pam</span>
             <span className="text-muted/60">$</span> cat case_study.md
           </p>
 
           <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl">
-            Automatisation de Rapports Réglementaires par{' '}
+            Analyse{' '}
             <span className="bg-gradient-to-r from-neon-cyan to-violet-500 bg-clip-text text-transparent">
-              IA
-            </span>
+              Multimodale
+            </span>{' '}
+            du Comportement de Vaches Laitières
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-fg/85 sm:text-lg">
-            Conception d’un workflow d’orchestration d’agents IA pour
-            l’extraction de données financières et la génération de rapports
-            conformes AMF.
+            Classification de sept comportements bovins à partir de capteurs
+            hétérogènes (localisation UWB, accélérométrie, posture) et détection
+            de profils atypiques au sein du troupeau — un projet de{' '}
+            <span className="font-medium text-white">Smart Farming</span> mené
+            sur le dataset MMCOWS.
           </p>
 
           <ul className="mt-8 flex flex-wrap gap-2">
@@ -177,19 +184,22 @@ export default function ProjectPRD() {
 
           <div className="rounded-lg border border-line border-l-4 border-l-orange-500 bg-surface/60 p-6 sm:p-8">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-orange-500">
-              ⚠ défi réglementaire
+              ⚠ défi données multimodales
             </p>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-fg/90">
-              Les acteurs du secteur financier doivent produire des rapports
-              d’adéquation conformes aux exigences de l’
-              <span className="font-semibold text-white">AMF</span>. Ces
-              documents sont construits manuellement à partir de sources
-              hétérogènes (DIC, Term Sheets, données internes), rendant le
-              processus chronophage, peu évolutif et faiblement automatisé.
+              Le <span className="font-semibold text-white">Smart Farming</span>{' '}
+              cherche à objectiver le bien-être animal grâce aux capteurs. Le
+              dataset <span className="font-semibold text-white">MMCOWS</span>{' '}
+              (14 jours d’acquisition sur une ferme expérimentale de
+              l’Université du Wisconsin) fournit des flux massifs et hétérogènes :
+              localisation 3D UWB, capteurs inertiels, posture, production
+              laitière. Des fréquences allant de 10 Hz à une mesure par jour et
+              des annotations comportementales incomplètes rendent l’exploitation
+              directe impossible : harmonisation et modélisation s’imposent.
             </p>
             <p className="mt-4 font-mono text-xs text-muted">
-              # contraintes : documents PDF non standardisés · données
-              financières confidentielles (RGPD)
+              # contraintes : synchronisation temporelle multi-capteurs · ~2 % de
+              valeurs manquantes · labels « Unknown » (~18 %)
             </p>
           </div>
         </section>
@@ -208,7 +218,11 @@ export default function ProjectPRD() {
               >
                 <div className="mb-5 flex items-start justify-between">
                   <span className="grid h-10 w-10 place-items-center rounded-md border border-line bg-base text-neon-cyan transition-transform duration-300 group-hover:-translate-y-0.5">
-                    {step.icon && <span className="h-5 w-5 [&>svg]:h-5 [&>svg]:w-5">{step.icon}</span>}
+                    {step.icon && (
+                      <span className="h-5 w-5 [&>svg]:h-5 [&>svg]:w-5">
+                        {step.icon}
+                      </span>
+                    )}
                   </span>
                   <span className="bg-gradient-to-r from-neon-cyan to-violet-500 bg-clip-text font-mono text-xs text-transparent">
                     {step.number}
@@ -226,17 +240,17 @@ export default function ProjectPRD() {
           </div>
 
           <Figure
-            src={workflowImg}
-            alt="Vue globale du workflow n8n : extraction OCR, traitement IA multi-agents et génération du rapport"
+            src={heatmapImg}
+            alt="Heatmap spatiale de l'occupation de l'étable par une vache, avec zones de forte activité en rouge"
             label="fig. 01"
-            caption="vue globale du workflow n8n — de l'entrée utilisateur à la génération du rapport"
+            caption="cartographie spatiale — hotspots comportementaux et zones fonctionnelles de l'étable"
           />
 
           <Figure
-            src={agentImg}
-            alt="Architecture d'un agent IA : modèle Mistral, mémoire, outils et garde-fous"
+            src={resultsImg}
+            alt="Évolution du Macro F1-score des modèles Random Forest, MLP, LSTM et CNN-LSTM sur les quatre versions du dataset"
             label="fig. 02"
-            caption="zoom sur un agent — modèle Mistral Cloud, garde-fous de cohérence et itérations limitées"
+            caption="performance des modèles — le feature engineering (Dataset 4) est le principal levier de progression"
           />
         </section>
 
@@ -261,17 +275,59 @@ export default function ProjectPRD() {
               </article>
             ))}
           </div>
+        </section>
+
+        {/* ---------------------------------------------------------------- */}
+        {/* E. Analyse Comportementale & Atypismes                            */}
+        {/* ---------------------------------------------------------------- */}
+        <section className="py-16">
+          <SectionTitle prompt="$">analyse comportementale</SectionTitle>
+
+          <div className="rounded-lg border border-line bg-surface/60 p-6 sm:p-8">
+            <p className="max-w-3xl text-base leading-relaxed text-fg/90">
+              Au-delà de la classification, l’exploitation des labels permet une
+              première approche de <span className="font-semibold text-white">surveillance
+              individuelle</span> : le budget-temps de chaque vache est comparé à
+              la moyenne du troupeau via un z-score, pour identifier les écarts
+              notables (∣z∣ ≥ 1) et forts (∣z∣ ≥ 2).
+            </p>
+
+            <dl className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {BEHAVIOR_STATS.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-md border border-line bg-base/80 px-4 py-3 text-center"
+                >
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                    {stat.label}
+                  </dt>
+                  <dd className="mt-1 font-mono text-lg font-bold text-neon-cyan">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="mt-6 text-sm leading-relaxed text-fg/80">
+              Repos dominant (42 %), activité locomotrice (23 %), alimentation
+              (15 %) : un budget-temps cohérent avec la biologie attendue. Les
+              profils atypiques détectés — comme la vache C06 (↓ repos, ↑
+              activité, compatible avec une phase de vêlage) — illustrent le
+              potentiel d’alerte précoce de l’approche, à confirmer sur des
+              données physiologiques complémentaires.
+            </p>
+          </div>
 
           <Figure
-            src={posterImg}
-            alt="Poster académique du projet PRD : contexte, déroulé, difficultés et résultats"
+            src={budgetImg}
+            alt="Budget-temps par fonction biologique et par vache : barres empilées Rest, Feeding, Activity, Drinking, Licking"
             label="fig. 03"
-            caption="poster académique du projet — Forum PRD, ECAM Louis de Broglie"
+            caption="budget-temps comportemental — répartition journalière par vache (T01 à T10)"
           />
         </section>
 
         {/* ---------------------------------------------------------------- */}
-        {/* E. Améliorations Futures (Roadmap)                                */}
+        {/* F. Améliorations Futures (Roadmap)                                */}
         {/* ---------------------------------------------------------------- */}
         <section className="py-16">
           <SectionTitle prompt="$">améliorations futures</SectionTitle>

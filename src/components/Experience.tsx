@@ -37,9 +37,8 @@ const EXPERIENCES: ExperienceItem[] = [
       "Développement du portail Famoco Pay Portal (400+ clients) : gestion des transactions, réseaux de distribution, marchands et clients.",
       "Conception d'IHM en Angular avec architecture modulaire : composants personnalisés et services dédiés (HTML, TypeScript, SCSS).",
       "Développement backend en Java Spring : contrôleurs, services, DAO, DTO, mappeurs et intégration de bases de données Dockerisées.",
-      "Collecte et analyse de métriques système (ESXi, Smart-Implant, ZigBee, Jeedom) pour la supervision d'infrastructures industrielles : cuves de solvants, recharge de véhicules électriques, salle serveurs.",
     ],
-    tags: ['Angular', 'Java Spring', 'TypeScript', 'Docker', 'ESXi', 'ZigBee'],
+    tags: ['Angular', 'Java Spring', 'TypeScript', 'Docker'],
     accent: 'cyan',
   },
   {
@@ -52,13 +51,13 @@ const EXPERIENCES: ExperienceItem[] = [
     accent: 'green',
   },
   {
-    role: 'Stagiaire en automatisation industrielle IoT',
+    role: 'Stagiaire en automatisation industrielle IoT et virtualisation',
     company: 'Syneric',
     location: 'Perros-Guirec',
     period: 'janv. — févr. 2022',
     description:
-      "Surveillance réseau, gestion d'inventaire et déploiement d'une baie de stockage (IpScanner, Wireshark, Cisco Packet Tracer) ; mise en production d'un pare-feu Stormshield.",
-    tags: ['Stormshield', 'Wireshark', 'Cisco Packet Tracer'],
+      "Collecte et analyse de métriques système (ESXi, Smart-Implant, ZigBee et Jeedom) pour la supervision d'infrastructures industrielles : cuves de solvant, contrôle de charge de véhicules électriques et salle serveurs, via un tableau de bord.",
+    tags: ['ESXi', 'ZigBee', 'Jeedom'],
     accent: 'cyan',
   },
   {
@@ -67,7 +66,8 @@ const EXPERIENCES: ExperienceItem[] = [
     location: 'Perros-Guirec',
     period: 'mai — août 2021',
     description:
-      "Immersion dans l'infrastructure réseau d'une entreprise industrielle : support technicien et sensibilisation aux bonnes pratiques de cybersécurité.",
+      "Surveillance réseau, gestion d'inventaire et déploiement d'une baie de stockage (IpScanner, Wireshark, Cisco Packet Tracer) ; mise en production d'un pare-feu Stormshield.",
+    tags: ['Stormshield', 'Wireshark', 'Cisco Packet Tracer'],
     accent: 'green',
   },
 ]

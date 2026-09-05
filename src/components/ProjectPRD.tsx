@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
 import { Footer } from '../App'
+import posterImg from '../assets/prd/poster.png'
+import workflowImg from '../assets/prd/slide_5.png'
+import agentImg from '../assets/prd/slide_6.png'
 
 // ---------------------------------------------------------------------------
 // Données de la case study
@@ -129,6 +132,35 @@ function BackToPortfolio() {
       </span>
       cd ~/portfolio
     </a>
+  )
+}
+
+/** Figure illustrée avec légende façon capture d'écran */
+function Figure({
+  src,
+  alt,
+  label,
+  caption,
+}: {
+  src: string
+  alt: string
+  label: string
+  caption: string
+}) {
+  return (
+    <figure className="mt-10">
+      <div className="overflow-hidden rounded-lg border border-line bg-surface/60 transition-all duration-300 hover:border-neon-cyan/40 hover:shadow-[0_0_30px_rgba(0,179,255,0.08)]">
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="w-full"
+        />
+      </div>
+      <figcaption className="mt-3 font-mono text-xs text-muted">
+        <span className="font-semibold text-neon-cyan">{label}</span> — {caption}
+      </figcaption>
+    </figure>
   )
 }
 
@@ -280,6 +312,20 @@ export default function ProjectPRD() {
               </article>
             ))}
           </div>
+
+          <Figure
+            src={workflowImg}
+            alt="Vue globale du workflow n8n : extraction OCR, traitement IA multi-agents et génération du rapport"
+            label="fig. 01"
+            caption="vue globale du workflow n8n — de l'entrée utilisateur à la génération du rapport"
+          />
+
+          <Figure
+            src={agentImg}
+            alt="Architecture d'un agent IA : modèle Mistral, mémoire, outils et garde-fous"
+            label="fig. 02"
+            caption="zoom sur un agent — modèle Mistral Cloud, garde-fous de cohérence et itérations limitées"
+          />
         </section>
 
         {/* ---------------------------------------------------------------- */}
@@ -303,6 +349,13 @@ export default function ProjectPRD() {
               </article>
             ))}
           </div>
+
+          <Figure
+            src={posterImg}
+            alt="Poster académique du projet PRD : contexte, déroulé, difficultés et résultats"
+            label="fig. 03"
+            caption="poster académique du projet — Forum PRD, ECAM Louis de Broglie"
+          />
         </section>
 
         {/* ---------------------------------------------------------------- */}

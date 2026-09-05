@@ -1,6 +1,8 @@
 const NAV_LINKS = [
-  { label: 'projets', href: '#projets' },
+  { label: 'compétences', href: '#competences' },
   { label: 'expériences', href: '#experiences' },
+  { label: 'projets', href: '#projets' },
+  { label: 'diplômes', href: '#diplomes' },
 ] as const
 
 export default function Header() {
@@ -27,14 +29,16 @@ export default function Header() {
 
         {/* Navigation ancrée */}
         <nav aria-label="Navigation principale">
-          <ul className="flex items-center gap-6 sm:gap-8">
+          <ul className="flex items-center gap-4 sm:gap-8">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="font-mono text-sm text-muted transition-colors duration-200 hover:text-neon-green"
+                  className="font-mono text-xs text-muted transition-colors duration-200 hover:text-neon-green sm:text-sm"
                 >
-                  <span className="text-neon-green/70">./</span>
+                  <span className="hidden text-neon-green/70 sm:inline">
+                    ./
+                  </span>
                   {link.label}
                 </a>
               </li>

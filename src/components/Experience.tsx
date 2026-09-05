@@ -5,8 +5,9 @@ interface ExperienceItem {
   company: string
   location: string
   period: string
-  description: string
-  tags: string[]
+  highlights?: string[]
+  description?: string
+  tags?: string[]
   accent: Accent
   current?: boolean
 }
@@ -16,10 +17,14 @@ const EXPERIENCES: ExperienceItem[] = [
     role: 'Stagiaire Ingénieur Réseau & IT',
     company: 'Orange Innovation',
     location: 'Lannion',
-    period: '2026',
-    description:
-      "Conception d'une architecture de mesure de performance réseau (latence, gigue) via injection de paquets et parsing de captures tcpdump. Validation sur équipements Cisco, Juniper, Nokia, Arista.",
-    tags: ['MPLS', 'TWAMP', 'STAMP', 'Shell', 'AWK', 'Alpine'],
+    period: 'mars — sept. 2026',
+    highlights: [
+      "Conception d'une architecture de mesure de performance réseau (latence, gigue, pertes) via les protocoles TWAMP, STAMP, IOAM et MPLS.",
+      "Création de scripts Shell pour l'injection de paquets MPLS bruts (hexadécimal) et développement de scripts AWK pour le parsing de captures tcpdump.",
+      "Exploitation du protocole ISIS pour la cartographie automatique du réseau et implémentation d'une IHM dynamique affichant le parcours des paquets en temps réel.",
+      "Conteneurisation Alpine (ratio 40:1), tuning système (chrt, précision à 24 µs) et validation des perturbations sur équipements Cisco, Juniper, Nokia, Arista et simulateur Anue.",
+    ],
+    tags: ['TWAMP', 'STAMP', 'IOAM', 'MPLS', 'ISIS', 'Shell', 'AWK', 'Alpine'],
     accent: 'green',
     current: true,
   },
@@ -27,11 +32,43 @@ const EXPERIENCES: ExperienceItem[] = [
     role: 'Stagiaire Développeur Full-Stack',
     company: 'Famoco',
     location: 'Rennes',
-    period: '2025',
-    description:
-      'Développement du portail Famoco Pay Portal (400+ clients) en architecture modulaire. Intégration de bases de données Dockerisées et supervision IoT (Jeedom, ESXi).',
-    tags: ['Angular', 'Java Spring', 'Docker', 'TypeScript'],
+    period: 'juin — sept. 2025',
+    highlights: [
+      "Développement du portail Famoco Pay Portal (400+ clients) : gestion des transactions, réseaux de distribution, marchands et clients.",
+      "Conception d'IHM en Angular avec architecture modulaire : composants personnalisés et services dédiés (HTML, TypeScript, SCSS).",
+      "Développement backend en Java Spring : contrôleurs, services, DAO, DTO, mappeurs et intégration de bases de données Dockerisées.",
+      "Collecte et analyse de métriques système (ESXi, Smart-Implant, ZigBee, Jeedom) pour la supervision d'infrastructures industrielles : cuves de solvants, recharge de véhicules électriques, salle serveurs.",
+    ],
+    tags: ['Angular', 'Java Spring', 'TypeScript', 'Docker', 'ESXi', 'ZigBee'],
     accent: 'cyan',
+  },
+  {
+    role: 'Stagiaire en construction durable',
+    company: 'Workaway',
+    location: 'Aarschot, Belgique',
+    period: 'juin — août 2024',
+    description:
+      'Chantier bénévole international : moulage ciment, soudure, charpente bois et isolation en paille.',
+    accent: 'green',
+  },
+  {
+    role: 'Stagiaire en automatisation industrielle IoT',
+    company: 'Syneric',
+    location: 'Perros-Guirec',
+    period: 'janv. — févr. 2022',
+    description:
+      "Surveillance réseau, gestion d'inventaire et déploiement d'une baie de stockage (IpScanner, Wireshark, Cisco Packet Tracer) ; mise en production d'un pare-feu Stormshield.",
+    tags: ['Stormshield', 'Wireshark', 'Cisco Packet Tracer'],
+    accent: 'cyan',
+  },
+  {
+    role: 'Stagiaire technicien réseau et cybersécurité',
+    company: 'Ouest Pack',
+    location: 'Perros-Guirec',
+    period: 'mai — août 2021',
+    description:
+      "Immersion dans l'infrastructure réseau d'une entreprise industrielle : support technicien et sensibilisation aux bonnes pratiques de cybersécurité.",
+    accent: 'green',
   },
 ]
 
@@ -92,20 +129,43 @@ export default function Experience() {
               </span>
             </p>
 
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-fg/80">
-              {item.description}
-            </p>
+            {item.highlights ? (
+              <ul className="mt-3 max-w-2xl space-y-2">
+                {item.highlights.map((highlight) => (
+                  <li
+                    key={highlight}
+                    className="flex gap-2.5 text-sm leading-relaxed text-fg/80"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`mt-px shrink-0 font-mono ${COMPANY_STYLES[item.accent]}`}
+                    >
+                      ›
+                    </span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              item.description && (
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-fg/80">
+                  {item.description}
+                </p>
+              )
+            )}
 
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {item.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded border border-line bg-base/80 px-2 py-1 font-mono text-[11px] text-muted transition-colors duration-200 hover:border-neon-cyan/50 hover:text-neon-cyan"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
+            {item.tags && item.tags.length > 0 && (
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="rounded border border-line bg-base/80 px-2 py-1 font-mono text-[11px] text-muted transition-colors duration-200 hover:border-neon-cyan/50 hover:text-neon-cyan"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ol>

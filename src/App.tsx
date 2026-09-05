@@ -1,6 +1,8 @@
+import Education from './components/Education'
 import Experience from './components/Experience'
 import Header from './components/Header'
 import Projects from './components/Projects'
+import Skills from './components/Skills'
 
 function DownloadIcon({ className }: { className?: string }) {
   return (
@@ -105,8 +107,10 @@ function App() {
       <Header />
       <main className="mx-auto max-w-5xl px-6">
         <Hero />
+        <Skills />
         <Experience />
         <Projects />
+        <Education />
       </main>
       <Footer />
     </div>

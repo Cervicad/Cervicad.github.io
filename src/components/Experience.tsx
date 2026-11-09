@@ -55,19 +55,27 @@ const EXPERIENCES: ExperienceItem[] = [
     company: 'Syneric',
     location: 'Perros-Guirec',
     period: 'janv. — févr. 2022',
-    description:
-      "Collecte et analyse de métriques système (ESXi, Smart-Implant, ZigBee et Jeedom) pour la supervision d'infrastructures industrielles : cuves de solvant, contrôle de charge de véhicules électriques et salle serveurs, via un tableau de bord.",
-    tags: ['ESXi', 'ZigBee', 'Jeedom'],
+    highlights: [
+      "Benchmark de deux solutions de supervision installées sur VM d'un hôte ESXi (GLPI sur Ubuntu, Jeedom sur Debian) : Jeedom retenu pour le pilotage des modules connectés.",
+      "Conception et mise en production du suivi des cuves de solvant : Smart-Implant Z-Wave, schéma électrique, maquette et alertes mail selon le niveau — en remplacement de l'ancien système de lampes atelier.",
+      "Supervision de la salle serveurs (température, détection de présence, alertes SMTP) et remontée de la pointeuse à badges iSurpass dans Jeedom avec graphiques et documentation d'utilisation.",
+      "Contrôle de la recharge des véhicules électriques par lecteur de badges piloté par Jeedom, visant la réduction des coûts d'électricité de l'entreprise.",
+    ],
+    tags: ['Jeedom', 'Z-Wave', 'GLPI', 'ESXi', 'SMTP'],
     accent: 'cyan',
   },
   {
     role: 'Stagiaire technicien réseau et cybersécurité',
     company: 'Ouest Pack',
     location: 'Perros-Guirec',
-    period: 'mai — août 2021',
-    description:
-      "Surveillance réseau, gestion d'inventaire et déploiement d'une baie de stockage (IpScanner, Wireshark, Cisco Packet Tracer) ; mise en production d'un pare-feu Stormshield.",
-    tags: ['Stormshield', 'Wireshark', 'Cisco Packet Tracer'],
+    period: 'mai — juin 2021',
+    highlights: [
+      "Installation, mise à jour et mise en service du pare-feu Stormshield : connectivité Internet/poste, filtrage SSL et URL, plages horaires sur les règles de filtrage.",
+      "Personnalisation d'une page de blocage HTML pour les sites indésirables et notification automatique des alarmes du boîtier par SMTP.",
+      "Validation de l'antivirus du boîtier via une VM Windows 10 sous VirtualBox, puis déploiement du gestionnaire de mots de passe KeePass (proposition personnelle).",
+      "Prise en main de la surveillance réseau et de la gestion d'inventaire (IpScanner, Wireshark, Cisco Packet Tracer) ; configuration de la flotte de climatiseurs Panasonic via Comfort Cloud.",
+    ],
+    tags: ['Stormshield', 'Filtrage SSL/URL', 'SMTP', 'KeePass', 'VirtualBox'],
     accent: 'green',
   },
 ]

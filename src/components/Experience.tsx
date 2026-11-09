@@ -10,6 +10,8 @@ interface ExperienceItem {
   tags?: string[]
   accent: Accent
   current?: boolean
+  /** Lien interne vers une case study détaillée (ex : '#/syneric') */
+  link?: string
 }
 
 const EXPERIENCES: ExperienceItem[] = [
@@ -63,6 +65,7 @@ const EXPERIENCES: ExperienceItem[] = [
     ],
     tags: ['Jeedom', 'Z-Wave', 'GLPI', 'ESXi', 'SMTP'],
     accent: 'cyan',
+    link: '#/syneric',
   },
   {
     role: 'Stagiaire technicien réseau et cybersécurité',
@@ -77,6 +80,7 @@ const EXPERIENCES: ExperienceItem[] = [
     ],
     tags: ['Stormshield', 'Filtrage SSL/URL', 'SMTP', 'KeePass', 'VirtualBox'],
     accent: 'green',
+    link: '#/ouestpack',
   },
 ]
 
@@ -173,6 +177,15 @@ export default function Experience() {
                   </li>
                 ))}
               </ul>
+            )}
+
+            {item.link && (
+              <a
+                href={item.link}
+                className="group/link mt-4 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-violet-500 transition-colors duration-200 hover:text-neon-cyan"
+              >
+                <span aria-hidden="true">→</span> voir la case study
+              </a>
             )}
           </li>
         ))}

@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ComponentType } from 'react'
 import Education from './components/Education'
 import Experience from './components/Experience'
 import Header from './components/Header'
+import ProjectOuestPack from './components/ProjectOuestPack'
 import ProjectPAM from './components/ProjectPAM'
 import ProjectPRD from './components/ProjectPRD'
+import ProjectSyneric from './components/ProjectSyneric'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 
@@ -105,8 +107,9 @@ export function Footer() {
 }
 
 /**
- * Routage minimal par hash : '#/prd' et '#/pam' affichent les case studies,
- * toute autre valeur (ancres de section comme '#projets') affiche le portfolio.
+ * Routage minimal par hash : '#/prd', '#/pam', '#/ouestpack' et '#/syneric'
+ * affichent les case studies, toute autre valeur (ancres de section comme
+ * '#projets') affiche le portfolio.
  */
 function useHashRoute(): string {
   const [hash, setHash] = useState(() => window.location.hash)
@@ -120,15 +123,22 @@ function useHashRoute(): string {
   return hash
 }
 
+const CASE_STUDIES: Record<string, ComponentType> = {
+  '#/prd': ProjectPRD,
+  '#/pam': ProjectPAM,
+  '#/ouestpack': ProjectOuestPack,
+  '#/syneric': ProjectSyneric,
+}
+
 function App() {
   const hash = useHashRoute()
 
-  if (hash.startsWith('#/prd')) {
-    return <ProjectPRD />
-  }
+  const CaseStudy = Object.entries(CASE_STUDIES).find(([prefix]) =>
+    hash.startsWith(prefix),
+  )?.[1]
 
-  if (hash.startsWith('#/pam')) {
-    return <ProjectPAM />
+  if (CaseStudy) {
+    return <CaseStudy />
   }
 
   return (

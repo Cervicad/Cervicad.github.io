@@ -3,15 +3,21 @@ import type { ComponentType } from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import { useHashRoute } from './hooks/useHashRoute'
+import CaseStudyFamoco from './routes/CaseStudyFamoco'
+import CaseStudyM2L from './routes/CaseStudyM2L'
+import CaseStudyOrange from './routes/CaseStudyOrange'
 import CaseStudyOuestPack from './routes/CaseStudyOuestPack'
 import CaseStudyPAM from './routes/CaseStudyPAM'
 import CaseStudyPRD from './routes/CaseStudyPRD'
 import CaseStudySyneric from './routes/CaseStudySyneric'
 import HomePage from './routes/HomePage'
 
-/* Routing des case studies : routes #/prd, #/pam, #/syneric, #/ouestpack.
-   Toute autre valeur de hash (ou aucune) affiche le one-page. */
+/* Routing des études de cas : routes #/orange, #/famoco, #/m2l, #/prd, #/pam,
+   #/syneric, #/ouestpack. Toute autre valeur de hash (ou aucune) affiche le one-page. */
 const CASE_ROUTES: Record<string, ComponentType> = {
+  '#/orange': CaseStudyOrange,
+  '#/famoco': CaseStudyFamoco,
+  '#/m2l': CaseStudyM2L,
   '#/prd': CaseStudyPRD,
   '#/pam': CaseStudyPAM,
   '#/syneric': CaseStudySyneric,

@@ -65,8 +65,8 @@ export default function Hero() {
           <p className="mt-6 max-w-xl text-base leading-relaxed text-[#c9d6e8]">
             Passionné par la convergence entre <span className="text-ice">infrastructures réseau</span>,
             scripting bas-niveau (<span className="text-ice">Shell/AWK</span>) et méthodologies{' '}
-            <span className="text-ice">DevSecOps</span>. Actuellement en fin de stage chez{' '}
-            <span className="font-medium text-[#fdfdfd]">Orange Innovation</span>.
+            <span className="text-ice">DevSecOps</span>. Dernière expérience : stage de fin d'études chez{' '}
+            <span className="font-medium text-[#fdfdfd]">Orange Innovation</span> — R&D réseaux, Lannion.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">

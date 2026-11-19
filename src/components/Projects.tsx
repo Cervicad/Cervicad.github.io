@@ -76,6 +76,26 @@ function ActivityIcon({ className }: { className?: string }) {
   )
 }
 
+function ServerIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="3" y="4" width="18" height="6" rx="1.5" />
+      <rect x="3" y="14" width="18" height="6" rx="1.5" />
+      <line x1="7" y1="7" x2="7.01" y2="7" />
+      <line x1="7" y1="17" x2="7.01" y2="17" />
+    </svg>
+  )
+}
+
 function ArrowIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -149,6 +169,16 @@ const PROJECTS: Project[] = [
     ],
     icon: ActivityIcon,
     caseStudy: '#/pam',
+  },
+  {
+    title: 'M2L',
+    category: 'Virtualisation & supervision',
+    description:
+      "Virtualisation de la ferme de serveurs de la Maison des Ligues de Lorraine (hyperviseur ESXi, passerelle pfSense) et supervision PRTG de l'infrastructure.",
+    result: 'Ferme de serveurs virtualisée et supervisée : disponibilité, disque, CPU et RAM par sondes PRTG.',
+    tags: ['VMware ESXi', 'pfSense', 'PRTG', 'SNMP', 'Windows Server 2016', 'Packet Tracer'],
+    icon: ServerIcon,
+    caseStudy: '#/m2l',
   },
 ]
 

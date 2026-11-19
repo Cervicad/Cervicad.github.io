@@ -18,7 +18,7 @@ const EXPERIENCES: ExperienceItem[] = [
     company: 'Orange Innovation',
     location: 'Lannion',
     period: 'Mars — Sept. 2026',
-    current: true,
+    caseStudy: { href: '#/orange', label: 'Orange Innovation' },
     bullets: [
       "Conception d'une architecture de mesure de performance réseau (latence, gigue, pertes) via les protocoles TWAMP, STAMP, IOAM et MPLS.",
       "Création de scripts Shell pour l'injection de paquets MPLS bruts (hexadécimal) et développement de scripts AWK pour le parsing de captures tcpdump.",
@@ -42,6 +42,7 @@ const EXPERIENCES: ExperienceItem[] = [
     company: 'Famoco',
     location: 'Rennes',
     period: 'Juin — Sept. 2025',
+    caseStudy: { href: '#/famoco', label: 'Famoco' },
     bullets: [
       "Développement du portail Famoco Pay Portal (400+ clients) : gestion des transactions, réseaux de distribution, marchands et clients.",
       "Conception d'IHM en Angular avec architecture modulaire : composants personnalisés et services dédiés (HTML, TypeScript, SCSS).",

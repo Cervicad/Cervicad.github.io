@@ -49,7 +49,7 @@ function WarningIcon({ className }: { className?: string }) {
   )
 }
 
-/** Layout commun des 4 case studies : breadcrumb, en-tête, contexte, solution, résultats, suite. */
+/** Layout commun des études de cas : breadcrumb, en-tête, contexte, solution, résultats, suite. */
 export default function CaseStudyLayout({
   eyebrow,
   title,
@@ -62,6 +62,13 @@ export default function CaseStudyLayout({
   analysis,
   nextSteps,
 }: CaseStudyLayoutProps) {
+  // Numérotation continue des figures sur toute l'étude de cas.
+  const figureOffsets = new Map<string, number>()
+  let runningFigure = 0
+  for (const section of sections) {
+    figureOffsets.set(section.heading, runningFigure)
+    runningFigure += section.images?.length ?? 0
+  }
   return (
     <main>
       {/* En-tête case study : bandeau sobre */}
@@ -124,7 +131,7 @@ export default function CaseStudyLayout({
                       className="w-full overflow-hidden rounded-xl border border-line bg-card"
                     />
                     <figcaption className="mt-2 font-mono text-[11px] text-muted">
-                      fig. {String(imageIndex + 1).padStart(2, '0')} — {image.caption}
+                      fig. {String((figureOffsets.get(section.heading) ?? 0) + imageIndex + 1).padStart(2, '0')} — {image.caption}
                     </figcaption>
                   </figure>
                 ))}

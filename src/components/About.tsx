@@ -23,9 +23,9 @@ export default function About() {
             </p>
             <p>
               Fort de trois stages en automatisation, supervision système et développement full-stack,
-              je conçois actuellement chez Orange Innovation une architecture de monitoring réseau
-              alliant scripts bas-niveau et IHM dynamiques. Polyvalent et rigoureux, je cherche à
-              concevoir des solutions innovantes de mesure et d'analyse de performance.
+              j'ai conçu chez Orange Innovation une chaîne complète de mesure de performance réseau
+              MPLS — des scripts bas-niveau à la calibration d'horloges. Polyvalent et rigoureux, je
+              cherche à concevoir des solutions innovantes de mesure et d'analyse de performance.
             </p>
           </Reveal>
 

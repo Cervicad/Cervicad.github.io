@@ -1,114 +1,177 @@
-type Accent = 'green' | 'cyan'
+import Reveal from './Reveal'
+import SectionHead from './SectionHead'
 
 interface ExperienceItem {
   role: string
   company: string
   location: string
   period: string
-  description: string
+  bullets: string[]
   tags: string[]
-  accent: Accent
   current?: boolean
+  caseStudy?: { href: string; label: string }
 }
 
 const EXPERIENCES: ExperienceItem[] = [
   {
-    role: 'Stagiaire Ingénieur Réseau & IT',
+    role: 'Stagiaire ingénieur réseaux et informatique',
     company: 'Orange Innovation',
     location: 'Lannion',
-    period: '2026',
-    description:
-      "Conception d'une architecture de mesure de performance réseau (latence, gigue) via injection de paquets et parsing de captures tcpdump. Validation sur équipements Cisco, Juniper, Nokia, Arista.",
-    tags: ['MPLS', 'TWAMP', 'STAMP', 'Shell', 'AWK', 'Alpine'],
-    accent: 'green',
+    period: 'Mars — Sept. 2026',
     current: true,
+    bullets: [
+      "Conception d'une architecture de mesure de performance réseau (latence, gigue, pertes) via les protocoles TWAMP, STAMP, IOAM et MPLS.",
+      "Création de scripts Shell pour l'injection de paquets MPLS bruts (hexadécimal) et développement de scripts AWK pour le parsing de captures tcpdump.",
+      "Exploitation du protocole ISIS pour la cartographie automatique du réseau et implémentation d'une IHM dynamique affichant le parcours des paquets en temps réel.",
+      "Conteneurisation Alpine (ratio 40:1), tuning système (chrt, précision à 24 µs) et validation des perturbations sur équipements Cisco, Juniper, Nokia, Arista et simulateur Anue.",
+    ],
+    tags: [
+      'Shell',
+      'AWK',
+      'MPLS',
+      'TWAMP',
+      'STAMP',
+      'IOAM',
+      'ISIS',
+      'Alpine',
+      'Cisco/Juniper/Nokia/Arista',
+    ],
   },
   {
-    role: 'Stagiaire Développeur Full-Stack',
+    role: 'Stagiaire développeur Full-Stack',
     company: 'Famoco',
     location: 'Rennes',
-    period: '2025',
-    description:
-      'Développement du portail Famoco Pay Portal (400+ clients) en architecture modulaire. Intégration de bases de données Dockerisées et supervision IoT (Jeedom, ESXi).',
-    tags: ['Angular', 'Java Spring', 'Docker', 'TypeScript'],
-    accent: 'cyan',
+    period: 'Juin — Sept. 2025',
+    bullets: [
+      "Développement du portail Famoco Pay Portal (400+ clients) : gestion des transactions, réseaux de distribution, marchands et clients.",
+      "Conception d'IHM en Angular avec architecture modulaire : composants personnalisés et services dédiés (HTML, TypeScript, SCSS).",
+      'Développement backend en Java Spring : contrôleurs, services, DAO, DTO, mappeurs et intégration de bases de données Dockerisées.',
+      "Collecte et analyse de métriques système (ESXi, Smart-Implant, ZigBee, Jeedom) pour la supervision d'infrastructures industrielles (cuves de solvant, contrôle de charge de véhicules électriques, salle serveurs).",
+    ],
+    tags: ['Angular', 'TypeScript', 'Java Spring', 'Docker', 'SCSS', 'ZigBee'],
+  },
+  {
+    role: 'Volontaire en construction durable',
+    company: 'Workaway',
+    location: 'Aarschot, Belgique',
+    period: 'Juin — Août 2024',
+    bullets: [
+      'Chantier bénévole international : moulage ciment, soudure, charpente bois et isolation en paille.',
+      'Immersion internationale et pratique de chantier : travail manuel en équipe pluriculturelle.',
+      "Mise en pratique de principes d'ingénierie durable et de low-tech dans un contexte réel.",
+    ],
+    tags: ['Éco-construction', 'Travail manuel', 'Low-tech'],
+  },
+  {
+    role: 'Stagiaire en automatisation industrielle IoT et virtualisation',
+    company: 'Syneric',
+    location: 'Perros-Guirec',
+    period: 'Janv. — Févr. 2022',
+    caseStudy: { href: '#/syneric', label: 'Syneric' },
+    bullets: [
+      "Benchmark de deux solutions de supervision installées sur VM d'un hôte ESXi (GLPI sur Ubuntu, Jeedom sur Debian) : Jeedom retenu pour le pilotage des modules connectés.",
+      "Conception et mise en production du suivi des cuves de solvant : Smart-Implant Z-Wave, schéma électrique, maquette et alertes mail selon le niveau — en remplacement de l'ancien système de lampes atelier.",
+      "Supervision de la salle serveurs (température, détection de présence, alertes SMTP) et remontée de la pointeuse à badges iSurpass dans Jeedom avec graphiques et documentation d'utilisation.",
+      "Contrôle de la recharge des véhicules électriques par lecteur de badges piloté par Jeedom, visant la réduction des coûts d'électricité de l'entreprise.",
+    ],
+    tags: ['Jeedom', 'ESXi', 'Z-Wave', 'Smart-Implant', 'iSurpass', 'GLPI', 'Virtualisation'],
+  },
+  {
+    role: 'Stagiaire technicien réseau et cybersécurité',
+    company: 'Ouest Pack',
+    location: 'Perros-Guirec',
+    period: 'Mai — Juin 2021',
+    caseStudy: { href: '#/ouestpack', label: 'Ouest Pack' },
+    bullets: [
+      'Installation, mise à jour et mise en service du pare-feu Stormshield : connectivité Internet/poste, filtrage SSL et URL, plages horaires sur les règles de filtrage.',
+      "Personnalisation d'une page de blocage HTML pour les sites indésirables et notification automatique des alarmes du boîtier par SMTP.",
+      "Validation de l'antivirus du boîtier via une VM Windows 10 sous VirtualBox, puis déploiement du gestionnaire de mots de passe KeePass (proposition personnelle).",
+      'Prise en main de la surveillance réseau et de la gestion d\u2019inventaire (IpScanner, Wireshark, Cisco Packet Tracer) ; configuration de la flotte de climatiseurs Panasonic via Comfort Cloud.',
+    ],
+    tags: ['Stormshield', 'Filtrage SSL/URL', 'VirtualBox', 'KeePass', 'Wireshark', 'Cisco Packet Tracer'],
   },
 ]
 
-// Classes statiques par accent (requis par Tailwind pour ne pas rater les classes au build)
-const DOT_STYLES: Record<Accent, string> = {
-  green: 'bg-neon-green shadow-[0_0_12px_rgba(0,255,157,0.8)]',
-  cyan: 'bg-neon-cyan shadow-[0_0_12px_rgba(0,179,255,0.6)]',
-}
-
-const COMPANY_STYLES: Record<Accent, string> = {
-  green: 'text-neon-green',
-  cyan: 'text-neon-cyan',
+function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  )
 }
 
 export default function Experience() {
   return (
-    <section id="experiences" className="scroll-mt-24 py-20">
-      {/* Titre de section façon invite de commande */}
-      <div className="mb-12 flex items-center gap-4">
-        <h2 className="font-mono text-xl font-bold text-white sm:text-2xl">
-          <span className="text-neon-green">$</span> cat ./experiences.log
-        </h2>
-        <span
-          aria-hidden="true"
-          className="h-px flex-1 bg-gradient-to-r from-line-strong to-transparent"
-        />
-      </div>
+    <section id="experiences" className="scroll-mt-20 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHead index="03" title="Expériences" />
 
-      {/* Timeline verticale */}
-      <ol className="ml-2 border-l border-line">
-        {EXPERIENCES.map((item) => (
-          <li key={item.company} className="relative pb-14 pl-8 last:pb-0">
-            <span
-              aria-hidden="true"
-              className={`absolute -left-[7px] top-1 h-3.5 w-3.5 rounded-full border-4 border-base ${DOT_STYLES[item.accent]}`}
-            />
-
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <h3 className="font-mono text-base font-bold text-white sm:text-lg">
-                {item.role}
-              </h3>
-              {item.current && (
-                <span className="rounded-sm border border-neon-green/40 bg-neon-green/10 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-neon-green">
-                  en cours
-                </span>
-              )}
-            </div>
-
-            <p className="mt-2 font-mono text-sm">
+        <ol className="relative ml-2 border-l border-line">
+          {EXPERIENCES.map((item) => (
+            <li key={item.company} className="relative pb-14 pl-8 last:pb-0">
               <span
-                className={`font-semibold ${COMPANY_STYLES[item.accent]}`}
-              >
-                {item.company}
-              </span>
-              <span className="text-muted">
-                {' '}
-                · {item.location} · {item.period}
-              </span>
-            </p>
+                aria-hidden="true"
+                className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-paper bg-accent"
+              />
+              <Reveal>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                  <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted">
+                    {item.period}
+                  </p>
+                  {item.current && (
+                    <span className="rounded-full bg-success-soft px-2.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wider text-success">
+                      En cours
+                    </span>
+                  )}
+                </div>
 
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-fg/80">
-              {item.description}
-            </p>
+                <h3 className="mt-2 font-display text-lg font-semibold text-ink">{item.role}</h3>
+                <p className="mt-1 text-sm font-semibold text-ink">
+                  {item.company}
+                  <span className="font-normal text-muted"> · {item.location}</span>
+                </p>
 
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {item.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded border border-line bg-base/80 px-2 py-1 font-mono text-[11px] text-muted transition-colors duration-200 hover:border-neon-cyan/50 hover:text-neon-cyan"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ol>
+                <ul className="mt-3 max-w-3xl list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-body">
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet.slice(0, 40)}>{bullet}</li>
+                  ))}
+                </ul>
+
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="rounded-full border border-line bg-ice-soft px-2.5 py-1 font-mono text-[11px] text-ink"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+
+                {item.caseStudy && (
+                  <a
+                    href={item.caseStudy.href}
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors duration-200 hover:underline"
+                  >
+                    Voir la case study
+                    <ArrowIcon className="h-3.5 w-3.5" />
+                  </a>
+                )}
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
   )
 }

@@ -6,17 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfolio de Kevin Tallagrand — ingénieur Network & Dev : infrastructures réseau, scripting bas-niveau et méthodologies DevSecOps."
+      content="Portfolio de Kevin Tallagrand — ingénieur réseaux & développement : mesure de performance réseau (TWAMP, STAMP, IOAM), scripting bas-niveau, DevSecOps. Orange Innovation, Lannion."
     />
     <title>Kevin Tallagrand — Network &amp; Dev Engineer</title>
+    <meta property="og:title" content="Kevin Tallagrand — Network & Dev Engineer" />
+    <meta
+      property="og:description"
+      content="Ingénieur réseaux & développement — mesure de performance réseau, scripting bas-niveau, DevSecOps."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Anti-flash : pose la classe .dark et le fond AVANT la première peinture.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('theme')
+          var dark =
+            stored === 'dark' ||
+            (stored === null && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          if (dark) document.documentElement.classList.add('dark')
+          document.documentElement.style.backgroundColor = dark ? '#0d1f30' : '#fdfdfd'
+        } catch (error) {
+          /* localStorage indisponible : thème clair par défaut */
+        }
+      })()
+    </script>
   </head>
-  <body style="background-color: #0d1117">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

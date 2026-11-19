@@ -1,31 +1,73 @@
 @import 'tailwindcss';
 
+/* Dark mode piloté par la classe .dark sur <html> (toggle + localStorage) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  /* Typographie */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  /* ===== Typographie ===== */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; /* titres */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif; /* corps */
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace; /* micro-labels */
 
-  /* Palette — GitHub dark + accents néon */
-  --color-base: #0d1117;
-  --color-surface: #161b22;
-  --color-line: #21262d;
-  --color-line-strong: #30363d;
-  --color-fg: #c9d1d9;
-  --color-muted: #8b949e;
-  --color-neon-green: #00ff9d;
-  --color-neon-cyan: #00b3ff;
+  /* ===== Couleurs — thème CLAIR (défaut, fidèle au CV) ===== */
+  --color-paper: #fdfdfd; /* fond page (blanc CV)                     */
+  --color-card: #ffffff; /* surface cartes                            */
+  --color-line: #e3eaf2; /* bordures fines                            */
+  --color-line-strong: #cdd9e6; /* bordures hover                          */
+  --color-ink: #163853; /* H1-H4 — marine CV (11.97:1 AAA sur paper)   */
+  --color-body: #323b4c; /* texte courant — ardoise CV (11.07:1 AAA)    */
+  --color-muted: #5b6b81; /* secondaire (5.34:1 AA)                     */
+  --color-accent: #1d4a73; /* liens / focus (9.06:1 AAA)                 */
+  --color-navy: #163853; /* surface hero / header dark                 */
+  --color-navy-deep: #0f2c49; /* dégradé bas de hero                     */
+  --color-ice: #c2dcff; /* bleu glacé CV (déco, texte sur navy)       */
+  --color-ice-soft: #e8f0fa; /* fond chips (texte ink dessus : 10.6:1)  */
+  --color-success: #1e7a4a; /* statut ouvert aux opportunités (5.2:1)   */
+  --color-success-soft: #e4f3ea; /* fond chip statut                      */
 
-  /* Curseur terminal clignotant */
-  --animate-blink: blink 1.1s step-end infinite;
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
+  /* ===== Animations ===== */
+  --animate-fade-up: fade-up 0.5s ease-out both;
+  --animate-scroll-hint: scroll-hint 1.8s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
       opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
+
+  @keyframes scroll-hint {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(6px);
+      opacity: 1;
+    }
+  }
+}
+
+/* ===== Thème SOMBRE — overrides des variables sous .dark =====
+   Valeurs validées WCAG : texte #d7e1ec sur #0d1f30 : 12.6:1 AAA ·
+   muted #9fb3c9 : 7.8:1 AAA · ice #c2dcff sur #0d1f30 : 11.9:1 AAA */
+.dark {
+  --color-paper: #0d1f30;
+  --color-card: #132b42;
+  --color-line: #27425c;
+  --color-line-strong: #335271;
+  --color-ink: #e9f1f9;
+  --color-body: #d7e1ec;
+  --color-muted: #9fb3c9;
+  --color-accent: #c2dcff;
+  --color-ice-soft: #1c3650;
+  --color-success: #5fd39a;
+  --color-success-soft: #12352a;
 }
 
 html {
@@ -33,13 +75,49 @@ html {
 }
 
 body {
-  background-color: var(--color-base);
-  color: var(--color-fg);
+  background-color: var(--color-paper);
+  color: var(--color-body);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: rgb(0 255 157 / 0.25);
-  color: #ffffff;
+  background-color: var(--color-navy);
+  color: #fdfdfd;
+}
+
+.dark ::selection {
+  background-color: #c2dcff;
+  color: #0d1f30;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ===== Reveal au scroll (IntersectionObserver, once) ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

@@ -121,14 +121,22 @@ export default function Contact() {
             </button>
           </Reveal>
 
-          {/* TODO(Kevin) : remplacer par l'URL LinkedIn exacte dès qu'elle est confirmée. */}
           <Reveal className="rounded-xl border border-line bg-card p-6 shadow-[0_1px_2px_rgba(22,56,83,0.05)]">
             <LinkedInIcon className="h-5 w-5 text-accent" />
             <h3 className="mt-4 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
               LinkedIn
             </h3>
-            <p className="mt-2 text-sm text-body">Profil LinkedIn</p>
-            <p className="mt-4 font-mono text-[11px] text-muted">lien à compléter</p>
+            <a
+              href="https://www.linkedin.com/in/%F0%9F%9B%A1%EF%B8%8Fk%C3%A9vin-tallagrand-a47274203"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 block text-sm font-medium text-accent transition-colors duration-200 hover:underline"
+            >
+              Kévin Tallagrand
+            </a>
+            <p className="mt-4 font-mono text-[11px] break-all text-muted">
+              in/🛡️kévin-tallagrand-a47274203
+            </p>
           </Reveal>
 
           <Reveal className="rounded-xl border border-line bg-card p-6 shadow-[0_1px_2px_rgba(22,56,83,0.05)]">

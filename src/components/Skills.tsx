@@ -1,10 +1,28 @@
 import Reveal from './Reveal'
 import SectionHead from './SectionHead'
 
-const SKILL_GROUPS = [
+type SkillLevel = 'avance' | 'intermediaire'
+
+interface Skill {
+  name: string
+  level: SkillLevel
+}
+
+interface SkillGroup {
+  title: string
+  skills: Skill[]
+}
+
+/* Niveaux repris du CV : Avancé / Intermédiaire. */
+const advanced = (names: string[]): Skill[] => names.map((name) => ({ name, level: 'avance' }))
+
+const intermediate = (names: string[]): Skill[] =>
+  names.map((name) => ({ name, level: 'intermediaire' }))
+
+const SKILL_GROUPS: SkillGroup[] = [
   {
     title: 'Réseau & protocoles',
-    items: [
+    skills: advanced([
       'TCP/IP',
       'MPLS/SR-MPLS',
       'TWAMP',
@@ -12,17 +30,17 @@ const SKILL_GROUPS = [
       'IOAM',
       'OWAMP',
       'IPSec',
-      'ISIS',
       'Routage',
+      'ISIS',
       'QoS (DSCP)',
       'NTP',
       'SR-IOV',
       'ZigBee',
-    ],
+    ]),
   },
   {
     title: 'Équipements & analyse',
-    items: [
+    skills: advanced([
       'Cisco',
       'Juniper',
       'Nokia',
@@ -33,49 +51,54 @@ const SKILL_GROUPS = [
       'Tcpdump',
       'Tshark',
       'Perfsonar',
-    ],
+    ]),
   },
   {
     title: 'Développement',
-    items: [
-      'Shell',
-      'AWK',
-      'Bash',
-      'Python',
-      'TypeScript',
-      'Java',
-      'SQL',
-      'Angular',
-      'React',
-      'Spring',
-      'HTML/CSS',
-      'C',
-      'C++',
-      'JavaScript',
-      'PHP',
-      'PowerShell',
-      'MATLAB',
+    skills: [
+      ...advanced([
+        'Shell',
+        'AWK',
+        'Bash',
+        'Python',
+        'TypeScript',
+        'Java',
+        'SQL',
+        'Angular',
+        'React',
+        'Spring',
+        'HTML/CSS',
+        'MATLAB',
+      ]),
+      ...intermediate(['C', 'C++', 'JavaScript', 'PHP', 'PowerShell']),
     ],
   },
   {
     title: 'DevOps & outils',
-    items: [
-      'Docker',
-      'Kubernetes',
-      'Linux',
-      'Ansible',
-      'GitLab',
-      'n8n',
-      'PyTorch',
-      'Gerrit',
-      'Jira',
-      'VS Code',
-      'VMware ESXi',
-      'Home Assistant',
-      'Jeedom',
+    skills: [
+      ...advanced([
+        'Docker',
+        'Kubernetes',
+        'Linux',
+        'Ansible',
+        'GitLab',
+        'n8n',
+        'PyTorch',
+        'Gerrit',
+        'Jira',
+        'VS Code',
+      ]),
+      ...intermediate(['VMware ESXi', 'Home Assistant', 'Jeedom']),
     ],
   },
 ]
+
+/* Classes statiques par niveau (le compilateur Tailwind doit les voir au build). */
+const LEVEL_STYLES: Record<SkillLevel, string> = {
+  avance:
+    'border-line-strong bg-ice-soft text-ink dark:border-ice/40 dark:bg-ice/15 dark:text-ice',
+  intermediaire: 'border-line bg-card text-muted',
+}
 
 export default function Skills() {
   return (
@@ -91,18 +114,35 @@ export default function Skills() {
             >
               <h3 className="font-display text-lg font-semibold text-ink">{group.title}</h3>
               <ul className="mt-4 flex flex-wrap gap-2">
-                {group.items.map((item) => (
+                {group.skills.map((skill) => (
                   <li
-                    key={item}
-                    className="rounded-full border border-line bg-ice-soft px-2.5 py-1 font-mono text-[11px] text-ink"
+                    key={skill.name}
+                    className={`rounded-full border px-2.5 py-1 font-mono text-[11px] ${LEVEL_STYLES[skill.level]}`}
                   >
-                    {item}
+                    {skill.name}
                   </li>
                 ))}
               </ul>
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] text-muted">
+            <span
+              aria-hidden="true"
+              className="inline-block h-3 w-3 rounded-full border border-line-strong bg-ice-soft dark:border-ice/40 dark:bg-ice/15"
+            />
+            avancé
+          </span>
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] text-muted">
+            <span
+              aria-hidden="true"
+              className="inline-block h-3 w-3 rounded-full border border-line bg-card"
+            />
+            intermédiaire
+          </span>
+        </Reveal>
       </div>
     </section>
   )

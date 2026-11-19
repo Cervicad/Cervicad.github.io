@@ -154,7 +154,7 @@ const PROJECTS: Project[] = [
     icon: GaugeIcon,
   },
   {
-    title: 'PAMIA',
+    title: 'PAM',
     category: 'IA · Smart Farming',
     description:
       'Analyse multimodale du comportement de vaches laitières (dataset MMCOWS) : classification de 7 comportements par LSTM/CNN-LSTM et détection de profils atypiques.',

@@ -2,6 +2,10 @@ import CaseStudyLayout from '../components/CaseStudyLayout'
 import orangeCarto from '../assets/case-studies/orange-carto.png'
 import orangeDatagram from '../assets/case-studies/orange-datagram.png'
 import orangeKalman from '../assets/case-studies/orange-kalman.png'
+import orangeMirroring from '../assets/case-studies/orange-mirroring.png'
+import orangePerfsonarFix from '../assets/case-studies/orange-perfsonar-fix.png'
+import orangeSandwich from '../assets/case-studies/orange-sandwich.png'
+import orangeTransit from '../assets/case-studies/orange-transit.png'
 
 export default function CaseStudyOrange() {
   return (
@@ -25,6 +29,13 @@ export default function CaseStudyOrange() {
         {
           heading: 'Validation des instruments : TWAMP, Perfsonar, tcpdump',
           body: "Conteneurisation de l'outillage sous Alpine Linux — image 40 fois plus légère que Debian (31 Mo contre 1,24 Go) — puis tests avec le simulateur de réseau Anue. Les limites de Perfsonar sont documentées : non-détection de la corruption DSCP, pertes TWAMP dès 1 ms d'intervalle, bug du payload aléatoire corrigé via force-payload-0. La bascule vers tcpdump et l'extraction AWK repousse le seuil de perte à 24 µs — 100 000 paquets émis à 1 ms puis 100 µs d'intervalle sans impact — avec priorité temps réel chrt -f 99 pour twping.",
+          images: [
+            {
+              src: orangePerfsonarFix,
+              alt: "Diagramme de séquence des appels système de twping : ajustements d'horloge à chaque paquet avant modification, simple émission/réception après correction du code source",
+              caption: 'Suppression des ajustements d\u2019horloge de twping — avant / après correction',
+            },
+          ],
         },
         {
           heading: 'Instrumentation du paquet MPLS',
@@ -42,6 +53,11 @@ export default function CaseStudyOrange() {
           body: "Script isis2net.awk : à partir de la base d'état de liens ISIS, placement automatique des constellations de routeurs par l'algorithme Fruchterman-Reingold (Force-Directed Placement), métriques des liens pondérées par médiane, rendu via la bibliothèque interne edgar. Évolution proposée avec l'équipe : un service d'écoute alimentant la cartographie en continu, pour suivre en temps réel les chemins empruntés par les paquets.",
           images: [
             {
+              src: orangeMirroring,
+              alt: "Pipeline de cartographie : génération de paquets par scripts, émission via rawsend, capture par port mirroring tcpdump, traitement AWK et rendu du graphe dans edgra",
+              caption: 'Chaîne de cartographie : port mirroring, traitement AWK et rendu edgra',
+            },
+            {
               src: orangeCarto,
               alt: 'Cartographie du réseau de laboratoire : routeurs interconnectés avec le trajet mis en évidence du paquet utilisant un label MPLS',
               caption: 'Cartographie du réseau de laboratoire — trajet d\u2019un paquet par label MPLS',
@@ -56,6 +72,16 @@ export default function CaseStudyOrange() {
               src: orangeKalman,
               alt: "Courbes de dérive d'horloge d'un routeur avant et après correction par le filtre de Kalman",
               caption: 'Dérive d\u2019horloge corrigée par le filtre de Kalman (ts_kalman.awk)',
+            },
+            {
+              src: orangeTransit,
+              alt: "Comparaison avant/après : paquet horodaté MPLS ICMPTS ou OPTIP (RTT 1,3 ms) contre paquet transit (RTT 100 µs), avec relevés min_transit et graphe de délais et d'horloge",
+              caption: 'Paquets transit vs paquets horodatés — délai réseau réel (100 µs contre 1,3 ms)',
+            },
+            {
+              src: orangeSandwich,
+              alt: "Représentation en échelle logarithmique des délais et horodatages des paquets sandwich : horloge brute, temps retour réseau pur et horloge synchronisée",
+              caption: 'Délais et timestamps des paquets sandwich en échelle logarithmique (Nokia SR7)',
             },
           ],
         },

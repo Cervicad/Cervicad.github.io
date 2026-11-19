@@ -4,8 +4,6 @@ import SectionHead from './SectionHead'
 const FIGURES = [
   { value: '3', label: "stages d'ingénierie" },
   { value: '905/990', label: 'TOEIC' },
-  { value: '40:1', label: 'ratio de conteneurisation Alpine' },
-  { value: '24 µs', label: 'précision de mesure' },
 ]
 
 export default function About() {

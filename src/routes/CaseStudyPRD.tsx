@@ -1,9 +1,10 @@
 import CaseStudyLayout from '../components/CaseStudyLayout'
+import prdPoster from '../assets/case-studies/prd-poster.png'
 
 export default function CaseStudyPRD() {
   return (
     <CaseStudyLayout
-      eyebrow="Case study — IA Agents"
+      eyebrow="Étude de cas — IA Agents"
       title="Automatisation de Rapports Réglementaires par IA Agents"
       subtitle="Workflow n8n d'orchestration d'agents IA pour l'extraction de données financières (DIC, Term Sheets) et la génération de rapports d'adéquation conformes AMF."
       meta={[
@@ -28,6 +29,13 @@ export default function CaseStudyPRD() {
         {
           heading: 'Génération dynamique',
           body: "Organisation des données extraites en variables structurées, puis injection dynamique dans un template HTML (placeholders) pour produire le rapport réglementaire « Phoenix ».",
+          images: [
+            {
+              src: prdPoster,
+              alt: "Poster académique du projet PRD : extraction OCR des documents financiers, orchestration des agents IA et génération du rapport final",
+              caption: 'Poster académique du projet — Forum PRD, mars 2026',
+            },
+          ],
         },
       ]}
       stats={[{ value: '3–4 min', label: 'pour la génération complète d\u2019un rapport, contre plusieurs heures de traitement manuel' }]}

@@ -1,9 +1,12 @@
 import CaseStudyLayout from '../components/CaseStudyLayout'
+import synericNetatmo from '../assets/case-studies/syneric-netatmo.png'
+import synericMaquette from '../assets/case-studies/syneric-maquette.jpg'
+import synericIsurpass from '../assets/case-studies/syneric-isurpass.png'
 
 export default function CaseStudySyneric() {
   return (
     <CaseStudyLayout
-      eyebrow="Case study — IoT & supervision"
+      eyebrow="Étude de cas — IoT & supervision"
       title="Supervision d'une PME Industrielle"
       subtitle="Instrumentation Z-Wave d'une PME de 7 personnes sous Jeedom : cuves de solvant, salle serveurs et recharge VE, accessibles à tout le personnel sans formation lourde."
       meta={[
@@ -27,10 +30,29 @@ export default function CaseStudySyneric() {
         {
           heading: 'Instrumentation Z-Wave',
           body: "Suivi des cuves de solvant par Smart-Implant Fibaro : schéma électrique, maquette puis mise en production dans l'atelier, avec alertes mail par niveau. Supervision de la salle serveurs (température, présence, SMTP) et remontée Netatmo.",
+          images: [
+            {
+              src: synericMaquette,
+              alt: 'Photo de la maquette du suivi des cuves de solvant avec modules Smart-Implant Fibaro',
+              caption: 'Maquette du suivi des cuves de solvant',
+            },
+            {
+              src: synericNetatmo,
+              alt: 'Capture du tableau de bord Jeedom : capteurs Netatmo (température, CO₂, humidité, anémomètre, pluviomètre) et pilotage des zones de chauffage',
+              caption: 'Tableau de bord des appareils Netatmo sur Jeedom',
+            },
+          ],
         },
         {
           heading: "Contrôle d'accès & mobilité",
           body: "Pointeuse à badges iSurpass appairée à Jeedom : remontée des identifiants, graphiques d'historique et documentation d'utilisation. Contrôle de la recharge des véhicules électriques par lecteur de badges pour maîtriser les coûts.",
+          images: [
+            {
+              src: synericIsurpass,
+              alt: "Photo du boîtier iSurpass avec son bouton d'appairage",
+              caption: 'Boîtier iSurpass et son bouton d\u2019appairage',
+            },
+          ],
         },
       ]}
       stats={[

@@ -9,7 +9,7 @@ export interface CaseStudyImage {
 export interface CaseStudySection {
   heading: string
   body: string
-  image?: CaseStudyImage
+  images?: CaseStudyImage[]
 }
 
 export interface CaseStudyStat {
@@ -111,23 +111,23 @@ export default function CaseStudyLayout({
         <Reveal>
           <h2 className="font-display text-2xl font-semibold text-ink">La solution technique</h2>
           <div className="mt-6 space-y-8">
-            {sections.map((section, index) => (
+            {sections.map((section) => (
               <div key={section.heading}>
                 <h3 className="font-display text-lg font-semibold text-ink">{section.heading}</h3>
                 <p className="mt-2 leading-relaxed text-body">{section.body}</p>
-                {section.image && (
-                  <figure className="mt-4">
+                {section.images?.map((image, imageIndex) => (
+                  <figure key={image.src} className="mt-4">
                     <img
-                      src={section.image.src}
-                      alt={section.image.alt}
+                      src={image.src}
+                      alt={image.alt}
                       loading="lazy"
                       className="w-full overflow-hidden rounded-xl border border-line bg-card"
                     />
                     <figcaption className="mt-2 font-mono text-[11px] text-muted">
-                      fig. {String(index + 1).padStart(2, '0')} — {section.image.caption}
+                      fig. {String(imageIndex + 1).padStart(2, '0')} — {image.caption}
                     </figcaption>
                   </figure>
-                )}
+                ))}
               </div>
             ))}
           </div>

@@ -163,7 +163,7 @@ export default function Experience() {
                     href={item.caseStudy.href}
                     className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors duration-200 hover:underline"
                   >
-                    Voir la case study
+                    Voir l&rsquo;étude de cas
                     <ArrowIcon className="h-3.5 w-3.5" />
                   </a>
                 )}

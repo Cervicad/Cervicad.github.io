@@ -1,9 +1,11 @@
 import CaseStudyLayout from '../components/CaseStudyLayout'
+import ouestpackSsl from '../assets/case-studies/ouestpack-ssl.png'
+import ouestpackSmtp from '../assets/case-studies/ouestpack-smtp.png'
 
 export default function CaseStudyOuestPack() {
   return (
     <CaseStudyLayout
-      eyebrow="Case study — Cybersécurité & réseau"
+      eyebrow="Étude de cas — Cybersécurité & réseau"
       title="Sécurisation d'un Réseau d'Entreprise par Déploiement de Pare-feu"
       subtitle="Déploiement d'un pare-feu Stormshield SN210 chez Ouest Pack (31 salariés) : filtrage SSL/URL, durcissement et supervision des alarmes, sans couper l'activité."
       meta={[
@@ -27,10 +29,24 @@ export default function CaseStudyOuestPack() {
         {
           heading: 'Politique de filtrage',
           body: "Mise en place du proxy SSL (interception, déchiffrement, faux certificats), filtrage URL en HTTP, gestion de l'ordre des règles, plages horaires et page de blocage HTML personnalisée.",
+          images: [
+            {
+              src: ouestpackSsl,
+              alt: "Schéma du filtrage SSL : le pare-feu intercepte la connexion, analyse le certificat réel du serveur et présente un faux certificat au client pour déchiffrer les flux",
+              caption: 'Schéma du filtrage SSL — interception et faux certificats',
+            },
+          ],
         },
         {
           heading: 'Durcissement & outils',
           body: "Notification automatique des alarmes par SMTP, validation de l'antivirus du boîtier via une VM Windows 10 sous VirtualBox, déploiement du gestionnaire de mots de passe KeePass (proposition personnelle).",
+          images: [
+            {
+              src: ouestpackSmtp,
+              alt: 'Schéma du protocole SMTP illustrant la transmission des notifications d\u2019alarmes du boîtier vers les destinataires',
+              caption: 'Schéma du protocole SMTP — notification des alarmes du boîtier',
+            },
+          ],
         },
       ]}
       stats={[

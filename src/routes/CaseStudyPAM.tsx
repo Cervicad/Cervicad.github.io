@@ -1,9 +1,12 @@
 import CaseStudyLayout from '../components/CaseStudyLayout'
+import pamHeatmap from '../assets/case-studies/pam-heatmap.png'
+import pamResults from '../assets/case-studies/pam-results.png'
+import pamTimeBudget from '../assets/case-studies/pam-time-budget.png'
 
 export default function CaseStudyPAM() {
   return (
     <CaseStudyLayout
-      eyebrow="Case study — IA · Smart Farming"
+      eyebrow="Étude de cas — IA · Smart Farming"
       title="Classification du Comportement de Vaches Laitières"
       subtitle="Analyse multimodale du dataset MMCOWS : classification de 7 comportements par LSTM/CNN-LSTM et détection de profils atypiques."
       meta={[
@@ -24,14 +27,35 @@ export default function CaseStudyPAM() {
         {
           heading: 'Exploration & corrélations',
           body: "Étude exploratoire complète : matrices de corrélation (Pearson), ANOVA et eta², et heatmaps spatiales révélant les « hotspots » comportementaux de l'étable. Quatre itérations de datasets : synchronisation multi-capteurs à 1 Hz, distances aux zones d'intérêt, fenêtres glissantes de 10 s (vitesse lissée, Motion Score). Split par vaches pour garantir la généralisation.",
+          images: [
+            {
+              src: pamHeatmap,
+              alt: "Heatmap spatiale de l'étable montrant les zones les plus fréquentées par la vache 1 (hotspots comportementaux)",
+              caption: 'Heatmap spatiale — hotspots comportementaux de l\u2019étable (vache 1)',
+            },
+          ],
         },
         {
           heading: 'Modélisation comparative',
           body: "De la baseline Random Forest à l'hybride CNN-LSTM : le module CNN extrait le « rythme » des signaux d'accélération, le LSTM assure la cohérence temporelle. Sept comportements classifiés.",
+          images: [
+            {
+              src: pamResults,
+              alt: 'Diagramme en barres comparant précision, rappel et F1-score des six modèles finalistes (Random Forest, deep learning, LSTM, CNN-LSTM) sur la moyenne macro',
+              caption: 'Résultats globaux (Macro Avg) — comparaison des 6 modèles finalistes',
+            },
+          ],
         },
         {
           heading: 'Analyse comportementale',
           body: "Au-delà de la classification, exploitation des labels pour une première approche de surveillance individuelle : le budget-temps de chaque vache est comparé à la moyenne du troupeau via un z-score, pour identifier les écarts notables (∣z∣ ≥ 1) et forts (∣z∣ ≥ 2).",
+          images: [
+            {
+              src: pamTimeBudget,
+              alt: "Graphique de répartition du temps par fonction biologique (repos, alimentation, activité locomotrice) et par vache sur une journée",
+              caption: 'Répartition du temps par fonction biologique et par vache sur une journée',
+            },
+          ],
         },
       ]}
       stats={[

@@ -59,6 +59,7 @@ export default function CaseStudyPAM() {
         },
       ]}
       stats={[
+	    { value: '2016', label: 'CSV de données traité et corrélé à un comportement' },
         { value: '0.74', label: 'Macro F1 — meilleur score CNN-LSTM sur le dataset le plus enrichi' },
         { value: '0.15 → 0.71', label: 'rappel marche entre la baseline Random Forest et le CNN-LSTM (fenêtres de 10 s)' },
         { value: '7', label: 'comportements classifiés' },

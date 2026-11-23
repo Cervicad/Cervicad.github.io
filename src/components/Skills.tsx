@@ -6,89 +6,97 @@ type SkillLevel = 'avance' | 'intermediaire'
 interface Skill {
   name: string
   level: SkillLevel
-}
-
-interface SkillGroup {
-  title: string
-  skills: Skill[]
+  /* Page où la compétence a été acquise : étude de cas (#/…) ou section Projets. */
+  href: string
 }
 
 /* Niveaux repris du CV : Avancé / Intermédiaire. */
-const advanced = (names: string[]): Skill[] => names.map((name) => ({ name, level: 'avance' }))
+const advanced = (entries: Array<[string, string]>): Skill[] =>
+  entries.map(([name, href]) => ({ name, href, level: 'avance' }))
 
-const intermediate = (names: string[]): Skill[] =>
-  names.map((name) => ({ name, level: 'intermediaire' }))
+const intermediate = (entries: Array<[string, string]>): Skill[] =>
+  entries.map(([name, href]) => ({ name, href, level: 'intermediaire' }))
 
-const SKILL_GROUPS: SkillGroup[] = [
+const SKILL_GROUPS = [
   {
     title: 'Réseau & protocoles',
     skills: advanced([
-      'TCP/IP',
-      'MPLS/SR-MPLS',
-      'TWAMP',
-      'STAMP',
-      'IOAM',
-      'OWAMP',
-      'IPSec',
-      'Routage',
-      'ISIS',
-      'QoS (DSCP)',
-      'NTP',
-      'SR-IOV',
-      'ZigBee',
+      ['TCP/IP', '#/orange'],
+      ['MPLS/SR-MPLS', '#/orange'],
+      ['TWAMP', '#/orange'],
+      ['STAMP', '#/orange'],
+      ['IOAM', '#/orange'],
+      ['OWAMP', '#/orange'],
+      ['IPSec', '#/orange'],
+      ['Routage', '#/orange'],
+      ['ISIS', '#/orange'],
+      ['QoS (DSCP)', '#/orange'],
+      ['NTP', '#/orange'],
+      ['SR-IOV', '#/orange'],
+      ['ZigBee', '#/famoco'],
     ]),
   },
   {
     title: 'Équipements & analyse',
     skills: advanced([
-      'Cisco',
-      'Juniper',
-      'Nokia',
-      'Arista',
-      'Stormshield',
-      'Anue (simulateur)',
-      'Wireshark',
-      'Tcpdump',
-      'Tshark',
-      'Perfsonar',
+      ['Cisco', '#/orange'],
+      ['Juniper', '#/orange'],
+      ['Nokia', '#/orange'],
+      ['Arista', '#/orange'],
+      ['Stormshield', '#/ouestpack'],
+      ['Anue (simulateur)', '#/orange'],
+      ['Wireshark', '#/ouestpack'],
+      ['Tcpdump', '#/orange'],
+      ['Tshark', '#/orange'],
+      ['Perfsonar', '#/orange'],
     ]),
   },
   {
     title: 'Développement',
     skills: [
       ...advanced([
-        'Shell',
-        'AWK',
-        'Bash',
-        'Python',
-        'TypeScript',
-        'Java',
-        'SQL',
-        'Angular',
-        'React',
-        'Spring',
-        'HTML/CSS',
-        'MATLAB',
+        ['Shell', '#/orange'],
+        ['AWK', '#/orange'],
+        ['Bash', '#/orange'],
+        ['C', '#projets'],
+        ['Python', '#/pam'],
+        ['TypeScript', '#/famoco'],
+        ['Java', '#/famoco'],
+        ['SQL', '#/famoco'],
+        ['Angular', '#/famoco'],
+        ['React', '#projets'],
+        ['JavaSpring', '#/famoco'],
+        ['HTML/CSS', '#/famoco'],
+        ['MATLAB', '#projets'],
       ]),
-      ...intermediate(['C', 'C++', 'JavaScript', 'PHP', 'PowerShell']),
+      ...intermediate([
+        ['C++', '#projets'],
+        ['JavaScript', '#projets'],
+        ['PHP', '#projets'],
+        ['PowerShell', '#projets'],
+      ]),
     ],
   },
   {
     title: 'DevOps & outils',
     skills: [
       ...advanced([
-        'Docker',
-        'Kubernetes',
-        'Linux',
-        'Ansible',
-        'GitLab',
-        'n8n',
-        'PyTorch',
-        'Gerrit',
-        'Jira',
-        'VS Code',
+        ['Docker', '#/famoco'],
+        ['Kubernetes', '#projets'],
+        ['Linux', '#/orange'],
+        ['Ansible', '#projets'],
+        ['GitLab', '#/orange'],
+        ['n8n', '#/prd'],
+        ['PyTorch', '#/pam'],
+        ['Gerrit', '#/famoco'],
+        ['Jira', '#/famoco'],
+        ['VS Code', '#projets'],
       ]),
-      ...intermediate(['VMware ESXi', 'Home Assistant', 'Jeedom']),
+      ...intermediate([
+        ['VMware ESXi', '#/m2l'],
+        ['Home Assistant', '#projets'],
+        ['Jeedom', '#/syneric'],
+      ]),
     ],
   },
 ]
@@ -115,11 +123,13 @@ export default function Skills() {
               <h3 className="font-display text-lg font-semibold text-ink">{group.title}</h3>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
-                  <li
-                    key={skill.name}
-                    className={`rounded-full border px-2.5 py-1 font-mono text-[11px] ${LEVEL_STYLES[skill.level]}`}
-                  >
-                    {skill.name}
+                  <li key={skill.name}>
+                    <a
+                      href={skill.href}
+                      className={`rounded-full border px-2.5 py-1 font-mono text-[11px] transition-colors duration-200 hover:border-accent hover:text-accent ${LEVEL_STYLES[skill.level]}`}
+                    >
+                      {skill.name}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -141,6 +151,9 @@ export default function Skills() {
               className="inline-block h-3 w-3 rounded-full border border-line bg-card"
             />
             intermédiaire
+          </span>
+          <span className="font-mono text-[11px] text-muted">
+            — cliquer sur une compétence pour ouvrir le projet où elle a été acquise
           </span>
         </Reveal>
       </div>

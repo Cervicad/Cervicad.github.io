@@ -10,10 +10,12 @@ import CaseStudyOuestPack from './routes/CaseStudyOuestPack'
 import CaseStudyPAM from './routes/CaseStudyPAM'
 import CaseStudyPRD from './routes/CaseStudyPRD'
 import CaseStudySyneric from './routes/CaseStudySyneric'
+import CaseStudyWorkaway from './routes/CaseStudyWorkaway'
 import HomePage from './routes/HomePage'
 
 /* Routing des études de cas : routes #/orange, #/famoco, #/m2l, #/prd, #/pam,
-   #/syneric, #/ouestpack. Toute autre valeur de hash (ou aucune) affiche le one-page. */
+   #/syneric, #/ouestpack, #/workaway. Toute autre valeur de hash (ou aucune)
+   affiche le one-page. */
 const CASE_ROUTES: Record<string, ComponentType> = {
   '#/orange': CaseStudyOrange,
   '#/famoco': CaseStudyFamoco,
@@ -22,6 +24,7 @@ const CASE_ROUTES: Record<string, ComponentType> = {
   '#/pam': CaseStudyPAM,
   '#/syneric': CaseStudySyneric,
   '#/ouestpack': CaseStudyOuestPack,
+  '#/workaway': CaseStudyWorkaway,
 }
 
 export default function App() {

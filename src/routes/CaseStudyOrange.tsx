@@ -87,9 +87,11 @@ export default function CaseStudyOrange() {
         },
       ]}
       stats={[
+	    { value: '5', label: 'Marques de routeurs testées (Nokia, Cisco, Juniper, Arista et Alcatel)' },
+		{ value: '10', label: 'Modèles de routeurs analysées et testées (PTX10004, MX2010, SR2S, ASR9900, SR-7 ...)' },
         { value: '40:1', label: 'ratio de conteneurisation Alpine — 31 Mo contre 1,24 Go Debian' },
         { value: '24 µs', label: 'seuil de perte de la chaîne tcpdump + AWK' },
-        { value: '49 j', label: 'saut d\u2019horloge détecté et neutralisé (compteur 32 bits)' },
+        { value: '49 j', label: 'saut d\u2019horloge parasite détecté et annulé dans la calibration (compteur 32 bits)' },
       ]}
       analysis="Sept scripts livrés et documentés sur GitLab, dont measures.sh, adopté par les ingénieurs de l'équipe pour leurs campagnes de mesure. La calibration multi-constructeurs (Juniper, Arista, Cisco, Nokia, Alcatel) caractérise les dérives de 5 à 27 ppm et leur corrélation thermique, et distingue le délai réseau réel du coût d'horodatage des équipements."
       nextSteps={[

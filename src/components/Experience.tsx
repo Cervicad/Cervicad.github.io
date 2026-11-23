@@ -1,3 +1,9 @@
+import famocoPayout from '../assets/case-studies/famoco-payout.png'
+import orangeCarto from '../assets/case-studies/orange-carto.png'
+import ouestpackSsl from '../assets/case-studies/ouestpack-ssl.png'
+import synericMaquette from '../assets/case-studies/syneric-maquette.jpg'
+import workawayChantier from '../assets/case-studies/workaway-04.jpg'
+import CaseStudyThumb from './CaseStudyThumb'
 import Reveal from './Reveal'
 import SectionHead from './SectionHead'
 
@@ -10,6 +16,7 @@ interface ExperienceItem {
   tags: string[]
   current?: boolean
   caseStudy?: { href: string; label: string }
+  image?: string
 }
 
 const EXPERIENCES: ExperienceItem[] = [
@@ -19,6 +26,7 @@ const EXPERIENCES: ExperienceItem[] = [
     location: 'Lannion',
     period: 'Mars — Sept. 2026',
     caseStudy: { href: '#/orange', label: 'Orange Innovation' },
+    image: orangeCarto,
     bullets: [
       "Conception d'une architecture de mesure de performance réseau (latence, gigue, pertes) via les protocoles TWAMP, STAMP, IOAM et MPLS.",
       "Création de scripts Shell pour l'injection de paquets MPLS bruts (hexadécimal) et développement de scripts AWK pour le parsing de captures tcpdump.",
@@ -43,6 +51,7 @@ const EXPERIENCES: ExperienceItem[] = [
     location: 'Rennes',
     period: 'Juin — Sept. 2025',
     caseStudy: { href: '#/famoco', label: 'Famoco' },
+    image: famocoPayout,
     bullets: [
       "Développement du portail Famoco Pay Portal (400+ clients) : gestion des transactions, réseaux de distribution, marchands et clients.",
       "Conception d'IHM en Angular avec architecture modulaire : composants personnalisés et services dédiés (HTML, TypeScript, SCSS).",
@@ -56,6 +65,8 @@ const EXPERIENCES: ExperienceItem[] = [
     company: 'Workaway',
     location: 'Aarschot, Belgique',
     period: 'Juin — Août 2024',
+    caseStudy: { href: '#/workaway', label: 'Workaway' },
+    image: workawayChantier,
     bullets: [
       'Chantier bénévole international : moulage ciment, soudure, charpente bois et isolation en paille.',
       'Immersion internationale et pratique de chantier : travail manuel en équipe pluriculturelle.',
@@ -69,6 +80,7 @@ const EXPERIENCES: ExperienceItem[] = [
     location: 'Perros-Guirec',
     period: 'Janv. — Févr. 2022',
     caseStudy: { href: '#/syneric', label: 'Syneric' },
+    image: synericMaquette,
     bullets: [
       "Benchmark de deux solutions de supervision installées sur VM d'un hôte ESXi (GLPI sur Ubuntu, Jeedom sur Debian) : Jeedom retenu pour le pilotage des modules connectés.",
       "Conception et mise en production du suivi des cuves de solvant : Smart-Implant Z-Wave, schéma électrique, maquette et alertes mail selon le niveau — en remplacement de l'ancien système de lampes atelier.",
@@ -83,6 +95,7 @@ const EXPERIENCES: ExperienceItem[] = [
     location: 'Perros-Guirec',
     period: 'Mai — Juin 2021',
     caseStudy: { href: '#/ouestpack', label: 'Ouest Pack' },
+    image: ouestpackSsl,
     bullets: [
       'Installation, mise à jour et mise en service du pare-feu Stormshield : connectivité Internet/poste, filtrage SSL et URL, plages horaires sur les règles de filtrage.',
       "Personnalisation d'une page de blocage HTML pour les sites indésirables et notification automatique des alarmes du boîtier par SMTP.",
@@ -124,7 +137,8 @@ export default function Experience() {
                 aria-hidden="true"
                 className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-paper bg-accent"
               />
-              <Reveal>
+              <Reveal className="flex items-stretch gap-6">
+                <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
                   <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-muted">
                     {item.period}
@@ -167,6 +181,10 @@ export default function Experience() {
                     Voir l&rsquo;étude de cas
                     <ArrowIcon className="h-3.5 w-3.5" />
                   </a>
+                )}
+                </div>
+                {item.caseStudy && item.image && (
+                  <CaseStudyThumb src={item.image} href={item.caseStudy.href} blend="paper" />
                 )}
               </Reveal>
             </li>

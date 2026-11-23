@@ -1,3 +1,7 @@
+import m2lEsxi from '../assets/case-studies/m2l-esxi.png'
+import pamHeatmap from '../assets/case-studies/pam-heatmap.png'
+import prdPoster from '../assets/case-studies/prd-poster.png'
+import CaseStudyThumb from './CaseStudyThumb'
 import Reveal from './Reveal'
 import SectionHead from './SectionHead'
 
@@ -122,6 +126,7 @@ interface Project {
   tags: string[]
   icon: (props: { className?: string }) => React.JSX.Element
   caseStudy?: string
+  image?: string
 }
 
 const PROJECTS: Project[] = [
@@ -143,6 +148,7 @@ const PROJECTS: Project[] = [
     tags: ['n8n', 'Docker', 'Mistral AI', 'OCR', 'IA Agents', 'HTML Generation'],
     icon: WorkflowIcon,
     caseStudy: '#/prd',
+    image: prdPoster,
   },
   {
     title: 'Centreon',
@@ -169,6 +175,7 @@ const PROJECTS: Project[] = [
     ],
     icon: ActivityIcon,
     caseStudy: '#/pam',
+    image: pamHeatmap,
   },
   {
     title: 'M2L',
@@ -179,6 +186,7 @@ const PROJECTS: Project[] = [
     tags: ['VMware ESXi', 'pfSense', 'PRTG', 'SNMP', 'Windows Server 2016', 'Packet Tracer'],
     icon: ServerIcon,
     caseStudy: '#/m2l',
+    image: m2lEsxi,
   },
 ]
 
@@ -194,8 +202,9 @@ export default function Projects() {
             return (
               <Reveal
                 key={project.title}
-                className="flex flex-col rounded-xl border border-line bg-card p-6 shadow-[0_1px_2px_rgba(22,56,83,0.05)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_2px_4px_rgba(22,56,83,0.06),0_12px_28px_rgba(22,56,83,0.10)]"
+                className="flex gap-5 rounded-xl border border-line bg-card p-6 shadow-[0_1px_2px_rgba(22,56,83,0.05)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_2px_4px_rgba(22,56,83,0.06),0_12px_28px_rgba(22,56,83,0.10)]"
               >
+                <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex items-start justify-between gap-4">
                   <p className="mt-1 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
                     {project.category}
@@ -232,6 +241,10 @@ export default function Projects() {
                     Voir l&rsquo;étude de cas
                     <ArrowIcon className="h-3.5 w-3.5" />
                   </a>
+                )}
+                </div>
+                {project.caseStudy && project.image && (
+                  <CaseStudyThumb src={project.image} href={project.caseStudy} />
                 )}
               </Reveal>
             )
